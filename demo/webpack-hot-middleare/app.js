@@ -1,21 +1,19 @@
-import {
-	createReadStream
-} from 'fs'
+require( "babel-polyfill" );
 
-import webpack from 'webpack'
+var fs = require( 'fs' )
+var webpack = require( 'webpack' )
 
-import {
-	devMiddleware,
-	hotMiddleware
-} from 'koa-webpack-middleware'
+var webpackMiddleware = require( 'koa-webpack-middleware' );
+var devMiddleware = webpackMiddleware.devMiddleware;
+var hotMiddleware = webpackMiddleware.hotMiddleware
 
-import webpackConf from './webpack.config'
+var webpackConf = require( './webpack.config' )
 
-import Koa from 'koa'
+var Koa = require( 'koa' )
 
-const app = new Koa()
+var app = new Koa()
 
-const compiler = webpack( webpackConf );
+var compiler = webpack( webpackConf );
 
 app.use( devMiddleware( compiler, {
 	noInfo: false,
@@ -26,7 +24,7 @@ app.use( hotMiddleware( compiler ) );
 
 app.use( ctx => {
 	ctx.type = 'html'
-	ctx.body = createReadStream( './index.html' );
+	ctx.body = fs.createReadStream( './index.html' );
 } )
 
 app.listen( 3000 );
