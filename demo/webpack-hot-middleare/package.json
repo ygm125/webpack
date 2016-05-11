@@ -15,10 +15,7 @@
     "webpack": "^1.13.0"
   },
   "dependencies": {
-    "babel-plugin-transform-async-to-generator": "^6.8.0",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.8.0",
     "babel-polyfill": "^6.8.0",
-    "babel-register": "^6.8.0",
     "koa": "^2.0.0"
   }
 }
